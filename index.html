@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CLASS OF CARDS</title>
+    <link rel="icon" type="image/x-icon" href="logo/1card.png">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="login-page" class="page hidden">
+        <h1>Login Page</h1>
+        <button id="googleLoginButton" style="
+        background-color: #4285F4; 
+        color: white; 
+        border: none; 
+        padding: 10px 20px; 
+        font-size: 16px; 
+        cursor: pointer;  ">
+            <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt="Google icon" style="width: 20px; height: 20px;">
+            Sign in with Google
+        </button>
+    </div>
+
+
+    <div class="overlay page hidden"></div>
+
+    <div id="character-info-selection" class="hidden">
+        <h1></h1>
+        <div class="charCard-selection">
+            <span class="charName-selection selectionSpan"></span>
+            <!-- <img src="./charImg/char1.jpeg" class="charImg-selection hidden"> -->
+            <div class="charSkills-selection"></div>
+        </div>
+    </div>
+
+
+    <div id="characterSelection" class="page active">
+        <h1>Character Selection</h1>
+        <div class="charSelectPage">
+            <div id="character-cards">
+                
+            </div>
+            <div id="selected-chars" class="">
+                <h2>Selected Characters</h2>
+                <p class="noCharsSelected active"><i>No characters selected</i></p>
+                <div id="selected-chars-list">
+                </div>
+                <button id="start-game-button" class="hidden">Start Game</button>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div id="main-game" class="page hidden">
+        <div class="roundStats">
+            <h2>Current Round:</h2>
+            <h3 class="current-round"></h3>
+            <div class="turnsDiv">
+                <h3 class="prevturns"></h3>
+                <h3 class="turns"></h3>
+                <h3 class="upcomingturns"></h3>
+            </div>
+        </div>
+
+        <div id="gameBoard">
+            <div id="notificationsBox">
+
+            </div>
+
+
+            <div class="sides playerSide">
+                <div class="character-slot" id="player-char-1">
+                    <div class="charCard">
+                        <img src="charImg/char1.jpeg" class="charImg">
+                        <span class="charName playerSpan"></span>
+                        <span class="healthPoints"></span>
+                    </div>
+                </div>
+                <div class="character-slot" id="player-char-2">
+                    <div class="charCard">
+                        <img src="charImg/char1.jpeg" class="charImg">
+                        <span class="charName playerSpan"></span>
+                        <span class="healthPoints"></span>
+                    </div>
+                </div>
+                <div class="character-slot" id="player-char-3">
+                    <div class="charCard">
+                        <img src="charImg/char1.jpeg" class="charImg">
+                        <span class="charName playerSpan"></span>
+                        <span class="healthPoints"></span>
+                    </div>
+                </div>
+                <div class="character-slot" id="player-char-4">
+                    <div class="charCard">
+                        <img src="charImg/char1.jpeg" class="charImg">
+                        <span class="charName playerSpan"></span>
+                        <span class="healthPoints"></span>
+                    </div>
+                </div>
+                <div class="character-slot" id="player-char-5">
+                    <div class="charCard">
+                        <img src="charImg/char1.jpeg" class="charImg">
+                        <span class="charName playerSpan"></span>
+                        <span class="healthPoints"></span>
+                    </div>
+                </div>
+                <div class="character-slot" id="player-char-6">
+                    <div class="charCard">
+                        <img src="charImg/char1.jpeg" class="charImg">
+                        <span class="charName playerSpan"></span>
+                        <span class="healthPoints"></span>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="divider"></div>
+
+            <div class="sides enemySide">
+                <div class="character-slot" id="enemy-char-1">
+                    <div class="charCard">
+                        <span class="charName enemySpan"></span>
+                        <img src="charImg/char1.jpeg" class="charImg">
+                        <span class="healthPoints"></span>
+                    </div>
+                </div>
+                <div class="character-slot" id="enemy-char-2">
+                    <div class="charCard">
+                        <span class="charName enemySpan"></span>
+                        <img src="charImg/char1.jpeg" class="charImg">
+                        <span class="healthPoints"></span>
+                    </div>
+                </div>
+                <div class="character-slot" id="enemy-char-3">
+                    <div class="charCard">
+                        <span class="charName enemySpan"></span>
+                        <img src="charImg/char1.jpeg" class="charImg">
+                        <span class="healthPoints"></span>
+                    </div>
+                </div>
+                <div class="character-slot" id="enemy-char-4">
+                    <div class="charCard">
+                        <span class="charName enemySpan"></span>
+                        <img src="charImg/char1.jpeg" class="charImg">
+                        <span class="healthPoints"></span>
+                    </div>
+                </div>
+                <div class="character-slot" id="enemy-char-5">
+                    <div class="charCard">
+                        <span class="charName enemySpan"></span>
+                        <img src="charImg/char1.jpeg" class="charImg">
+                        <span class="healthPoints"></span>
+                    </div>
+                </div>
+                <div class="character-slot" id="enemy-char-6">
+                    <div class="charCard">
+                        <span class="charName enemySpan"></span>
+                        <img src="charImg/char1.jpeg" class="charImg">
+                        <span class="healthPoints"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="selectedSkill">
+                <h2 class="selectedSkillDisplay"></h2>
+            </div>
+        </div>
+        
+        <div class="skillCardsBox">
+            <div class="skillCards">
+                
+            </div>
+        </div>
+        
+        <button class="ready-button">ready</button>
+    </div>
+    <script src="script.js" type="module"></script>
+</body>
+</html>

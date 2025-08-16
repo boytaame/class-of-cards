@@ -1,0 +1,674 @@
+/* Base layout */
+html {
+    min-height: 100%;
+    padding: 0;
+}
+
+body {
+    background-color: #1757bb;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100%;
+}
+
+
+#notificationsBox {
+    position: absolute;
+    left: 50%;
+    transform : translateX(-50%);
+    width: 460px;
+    height: 380px;
+    top: 39vh;
+}
+
+.notification-item {
+    padding: 12px 20px;
+    background-color: rgba(0, 0, 0, 0.75);
+    color: white;
+    font-size: 1.1em;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    user-select: none;
+
+    /* Animation setup */
+    opacity: 0;
+    transition: opacity 0.4s ease-out;
+}
+
+/* The class we'll add with JS to trigger the fade-in */
+.notification-item.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.hidden {
+    display: none;
+}
+
+#close-info {
+    position: absolute;
+    background-color: brown;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-weight: bold;
+    bottom: 1rem; 
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.charName {
+    user-select: none;
+}
+
+.roundStats {
+    background-color: white;
+    width: 100%;
+    height: 17vh;
+    top: 0;
+    bottom: 0;
+}
+
+.skillCardsBox{
+    position: absolute;
+    width: 100%;
+    height: 16vh;
+    bottom: 0;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.skillCards {
+    display: flex;
+    background-color: rgba(0, 0, 0, 0.541);
+    width: 35%;
+    flex: 1;
+    border-radius: 30px 30px 0  0 ;
+    justify-content: center;
+    /* ADD THIS LINE to align cards to the bottom before they pop up */
+    align-items: flex-end; 
+    height: 14vh;
+    cursor: pointer;
+}
+
+
+
+.skillCards > .skillCard {
+    position: relative; /* This is the key change */
+    width: 30%;
+    
+    /* REMOVE the old height: 99% */
+
+    /* ADD a new, taller height. Since the container is 16vh, let's make the card taller. */
+    height: 24vh; 
+
+    /* ADD a negative top value to lift the card up visually */
+    top: -20px; /* Adjust this value to control how much it pops out */
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 3px solid white;
+    border-radius: 16px; /* Add a radius to make them look more like cards */
+    background-color: #f0f0f0; /* Give them a distinct background */
+    margin: 0 15px; /* Add a little space between cards */
+    transition: transform 0.3s ease, filter 0.3s ease; /* Smooth transition for alignment change */
+    user-select: none;
+}
+
+
+.skillCard > span {
+    position: absolute;
+    top: 10px; /* Position the text at the bottom of the card */
+    left: 50%;
+    transform: translateX(-50%);
+    color: white; /* Text color */
+    font-weight: bold; /* Make the text bold */
+    text-align: center;
+    text-shadow: 2px 2px 12px #000000b2;
+    user-select: none;
+}
+
+.skillCard > img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensure the image covers the card area */
+    /* Match the card's border radius */
+    border-radius: 11px;
+}
+
+
+.skillCard:hover {
+    transform: translateY(-9px) scale(1.05);
+    filter: brightness(1.1); /* Slightly brighten the card on hover */
+    /* ADD THIS LINE to make the cards pop up when hovered */
+    align-items: center; /* Center the cards when hovered */
+    
+}
+
+.skillCard.skill-card-selected {
+    border: 3px solid white;
+    /* Optional: Add a subtle glow to make it pop even more */
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.7);
+}
+
+
+#login-page {
+    color: white;
+}
+
+#main-game {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 100%;
+    padding: 0;
+    box-sizing: border-box;
+    min-height: 100vh;
+}
+
+.page {
+    width: 100%;
+    /* Ensure pages fill the height of their parent (.main-wrapper) if needed */
+    /* For gamePage, its content (roundStats, gameBoard, skillCardsBox) defines its height */
+    /* For loginPage, we want it to fill the screen */
+    height: 100%; 
+    display: flex; /* Default display for active pages */
+    flex-direction: column; /* Organize content vertically within the page */
+    justify-content: flex-start; /* Align content to the top */
+    align-items: center; /* Center content horizontally */
+    transition: opacity 0.5s ease; /* Smooth transition for showing/hiding */
+    position: absolute;
+    top: 0;
+    left: 0;
+    /* Important: When a page is active, it should be visible */
+    opacity: 1;
+    pointer-events: auto; /* Allow interactions */
+    z-index: 1;
+}
+
+
+#character-info-selection {
+    position: absolute;
+    background-color: white;
+    width: 420px;
+    height: 550px;
+    margin: auto;
+    z-index: 3;
+    padding: 10px 30px;
+    border-radius: 10px;
+}
+
+#gameBoard {
+    display: grid;
+    grid-template-columns: 1fr 6px 1fr;
+    gap: 0px;
+    width: 100%;
+    height: 75vh;
+    align-items: center;
+}
+
+/* Divider as grid column */
+.divider {
+    background: linear-gradient(to bottom, 
+        black 0%,      /* Start with solid black at the top */
+        black 70%,     /* Stay solid black until 70% of the way down */
+        transparent 93% /* Fade to transparent by the bottom */
+    );
+    width: 6px;
+    height: 100%;
+    top: 0px;
+}
+
+/* Sides (enemy/player) */
+.sides {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(3, auto);
+    gap: 60px 0px;
+    justify-items: center;
+    align-items: center;
+}
+
+.character-slot {
+    max-width: 150px;
+    width: 100%;
+    aspect-ratio: 5 / 6;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    user-select: none;
+}
+
+.character-slot-selection {
+    max-width: 150px;
+    width: 100%;
+    aspect-ratio: 5 / 6;
+    position: relative;
+    display: flex;
+    flex-wrap : wrap;
+    justify-content: center;
+    align-items: center;
+    user-select: none;
+}
+
+.charCard {
+    filter: brightness(100%);
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.3s ease, filter 0.3s ease;
+    border-radius: 10px;
+    box-shadow: 0px 5px 14px rgba(0, 0, 0, 0.466);
+}
+
+.charCard::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: var(--depletion-height, 0%);
+    
+    background-color: rgba(0, 0, 0, 0.0); /* fully transparent */
+    
+    /* Key trick: blend the underlying image into grayscale */
+    backdrop-filter: grayscale(100%);
+    -webkit-backdrop-filter: grayscale(100%);
+
+    z-index: 2;
+    transition: height 0.5s ease-in-out;
+    pointer-events: none;
+}
+
+.health-text {
+    position: absolute;
+    bottom: 5px;
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+    text-shadow: 1px 1px 2px black;
+    z-index: 3;
+}
+
+
+.charCard:hover {
+    filter: brightness(125%);
+    cursor: pointer;
+    transform: scale(1.05);
+}
+
+.charCard-selected {
+    transition: transform 0.3s ease;
+}
+
+.charCard-selected:hover {
+    transform: scale(1.01);
+    cursor: pointer;
+}
+
+
+.charCard-selection {
+    position: relative;
+    max-width: 180px;
+    height: 250px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.charCard-selected {
+    position: relative;
+    max-width: 180px;
+    height: 250px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.charImg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1; /* Bottom layer */
+}
+
+.charImg-selection {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.charName {
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 2px 6px;
+    font-size: 16px;
+    border-radius: 3px;
+    z-index: 2;
+}
+
+
+.turnsDiv {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    user-select: none;
+}
+
+.turns {
+    font-size: 35px;
+}
+
+.prevturns {
+    opacity: 0.5;
+}
+
+.upcomingturns {
+    opacity: 0.5;
+}
+
+
+.charName-selection {
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 2px 6px;
+    font-size: 16px;
+    border-radius: 3px;
+    z-index: 2;
+}
+
+.selectionSpan {
+    bottom: 5px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+
+#selected-chars-list {
+    display: flex;
+    flex-wrap: wrap;
+    width: 330px;
+    gap: 10px;
+}
+
+.charCardRoundedBorders {
+    border-radius: 10px;
+    border: 2px solid rgb(255, 255, 255);
+}
+
+
+#selected-chars {
+    width: fit-content;
+    width: 20%;
+    border-left: 1px solid white;
+    padding-left: 18px;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+#selected-chars-list {
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+#start-game-button {
+    padding: 10px 10px;
+    border-radius: 5px;
+    border: 1px solid white;
+    background-color: white;
+    color: black;
+    margin-top: 25px;
+    cursor: pointer;
+    transition: transform 0.2s ease, background-color 0.2s ease, color 0.2s ease;
+}
+#start-game-button:hover {
+    background-color: black;
+    color: white;
+    transform: scale(1.05);
+}
+
+#close-info {
+    cursor: pointer;
+}
+
+.healthPoints {
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 2px 6px;
+    font-size: 16px;
+    border-radius: 3px;
+    top: 5px;
+    z-index: 2;
+    font-weight: bold;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
+}
+
+.ready-button {
+    position: absolute;
+    top: 50%;
+    font-weight: bold;
+    font-size: 18px;
+    padding: 10px 10px;
+    border-radius: 2px;
+    border: 1px solid white;
+    background-color: white;
+    color: black;
+    cursor: pointer;
+    transition: transform 0.2s ease, background-color 0.2s ease, color 0.2s ease;
+    z-index: 2;
+}
+
+.ready-button:hover {
+    background-color: black;
+    color: white;
+    transform: scale(1.05);
+}
+
+.selected-for-swap {
+    filter: brightness(50%);
+    border: 2px solid green;
+}
+
+.charSelect-selection {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: white;
+    color: black;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 10;
+}
+
+.charCard, .charCard-selection {
+    z-index: 1;
+}
+
+
+
+.enemySpan {
+    bottom: 5px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.playerSide {
+    padding: 0 290px 0 0; /* pushes images away from the divider */
+}
+.enemySide {
+    padding: 0 0 0 290px; /* pushes images away from the divider */
+}
+
+.playerSpan {
+    bottom: 5px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/* Background color indicators */
+/* .enemySide > .character-slot {
+    
+}
+
+.playerSide > .character-slot {
+
+} */
+
+.page.hidden {
+    display: none;
+    opacity: 0;
+    pointer-events: none;
+    z-index: -1;
+}
+
+.page.active {
+    z-index: 1;
+}
+
+.roundStats {
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 17vh;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.roundStats > h2 {
+    margin: 0;
+    padding: 0;
+    padding-top: 30px;
+    user-select: none;
+}
+
+.current-round {
+    font-size: 34px;
+    margin: 0;
+    color: black;
+    padding: 0;
+    user-select: none;
+}
+
+.active-turn {
+    border: 4px solid white;
+}
+
+
+#characterSelection {
+    margin: 30px 30px 0px 30px;
+    color: white;
+    width: fit-content;
+}
+
+#characterSelection > .charSelectPage {
+    display: flex;
+    margin-right: 0px;
+}
+
+#characterSelection > h1 {
+    padding-top : 0;
+    margin-top : 0;
+}
+
+#character-cards {
+    position: relative;
+    color: white;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    width: fit-content;
+    max-height: 100%;
+    overflow: auto;
+    padding: 8px;
+}
+
+.selectedSkillDisplay {
+    position: absolute;
+    top: 18%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: black;
+    color: white;
+    padding: 8px;
+    border-radius: 5px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .gameBoard {
+        grid-template-columns: 1fr;
+    }
+
+    .divider {
+        display: none;
+    }
+
+    .sides {
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    }
+
+    .character-slot {
+        max-width: 120px;
+    }
+
+    .charName {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    .sides {
+        grid-template-columns: 1fr;
+    }
+
+    .character-slot {
+        max-width: 100px;
+    }
+
+    .charName {
+        font-size: 12px;
+    }
+}

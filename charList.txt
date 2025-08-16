@@ -1,0 +1,611 @@
+
+Characters
+1. Alveria
+Attack: 9 | Health: 76 | Speed: 17 | Role: Support | Rarity: ★★★★
+●	Skill 1 – Gentle Grab
+○	➡️ 20% damage to 1 target.
+●	Skill 2 – Magical Barrier
+○	➡️ 5 + 30% current HP Shield to 3 lowest-HP allies.
+○	⏳ Cooldown: 3 turns
+●	Skill 3 – Heartwarming Tune
+○	➡️ Gives ✨ Encouraged to all allies.
+○	🎵 Triggers ♪ Music.
+○	⏳ Cooldown: 4 turns
+●	Passive – Fake Mask
+○	➡️ If Keiron is present, switches to Fake Mask:
+○	Fake Skill 1 – Japanese Attempt
+■	➡️ Applies Slow effect (50% chance Weak effect).
+○	Fake Skill 2 – Book Toss
+■	➡️ −30% Buff Receive Rate to 3 random enemies.
+■	⏳ Cooldown: 3 turns
+○	Fake Skill 3 – Self-Sacrifice
+■	➡️ Uses 50% of Keiron's Max HP to deal true AoE damage.
+■	✨ If Keiron dies, Alveria fully heals.
+■	⏳ Cooldown: 5 turns
+●	Passive – Awakened
+○	➡️ If Keiron dies:
+■	Skill 1 always applies Weak effect.
+■	Skill 2 debuff becomes −60% Buff Receive Rate.
+2. Andrew
+Attack: 38 | Health: 166 | Speed: 28 | Role: META Fighter | Rarity: ★★★★★
+●	Skill 1 – Boxing Punch
+○	➡️ 60% damage to the closest.
+●	Skill 2 – Barbell Throw
+○	➡️ 40% to 2 enemies in a line.
+○	💪 Gains 🏋️‍♂️ Gym (2 turns).
+○	⏳ Cooldown: 3 turns
+●	Skill 3 – Cookie Break
+○	➡️ Heals 20% HP. Removes 1 debuff.
+○	⏳ Cooldown: 3 turns
+●	Skill 4 – Brutal Hook
+○	➡️ 120% to the selected enemy.
+○	⏳ Cooldown: 4 turns
+●	Passive – Last Man Standing
+○	Gains +10% Attack per ally death (max 3).
+○	If hit more than once by the same skill, all further applications deal 50% less damage or inflict 50% weaker effects.
+○	+30% damage to Tanks.
+○	Andrew's attacks against Vianny deal 50% less damage. 
+○	Andrew is immune to all love-related debuffs.
+3. Calvin
+Attack: 18 | Health: 160 | Speed: 12 | Role: Tank | Rarity: ★★★★
+●	Skill 1 – Random Fact
+○	➡️ 5 + 15% Max HP Shield. 20% damage to nearest enemy.
+●	Skill 2 – Confident Taunt
+○	➡️ Taunts enemies. All allies get ✨ Encouraged (Weakened).
+○	⏳ Cooldown: 3 turns
+●	Skill 3 – Dad Joke
+○	➡️ 40% AoE damage (2 hit combo 20% each). 75% chance to inflict 🤣 Laughing (acts last next turn).
+○	⏳ Cooldown: 4 turns
+●	Passive – Science Olympiad
+○	Every 3 turns: +10 Shield to allies, −1 cooldown on Skill 3.
+○	✨ If targeted 3+ times in 1 turn: gains ✨ Encouraged.
+4. Cathy
+Attack: 8 | Health: 50 | Speed: 12 | Role: Support | Rarity: ★★★★
+●	Skill 1 – Healing Dance
+○	➡️ 15% damage. If target <50% HP: Heals Cathy 5 HP, gives herself Overheal.
+●	Skill 2 – Graceful Spin
+○	➡️ Heals 1 ally (40% of her Max HP). Excess = Overheal (up to 150%).
+●	Skill 3 – Radiant Dance
+○	➡️ Heals all allies (25% Max HP), grants Overheal.
+○	🛡️ Grants 10 Shield to 2 lowest-HP allies.
+○	⏳ Cooldown: 3 turns
+●	Passive – Overhealing Mastery
+○	➡️ All heals = Overheal (up to +50%).
+○	🩹 If Overhealed ally drops <20% HP: heals 10 (once per battle).
+5. Devina
+Attack: 9 | Health: 61 | Speed: 13 | Role: Controller | Rarity: ★★★★
+●	Skill 1 – Unholy Cackle
+○	➡️ 15% damage to 2 enemies. Inflicts 😰 Nervous.
+●	Skill 2 – Piercing Yell
+○	➡️ Stuns 1 random enemy, 🔇Silences another.
+○	⏳ Cooldown: 4 turns
+●	Skill 3 – Illogical Arguments
+○	➡️ Inflicts 😰 Mentally Shaken (2 turns).
+○	⏳ Cooldown: 5 turns
+●	Passive – Debuff Master
+○	At start and every 3 turns: all enemies’ Buff Receive Rate −20%.
+○	If last alive: all debuffs = uncleansable.
+6. Celyn
+Attack: 4 | Health: 43 | Speed: 4 | Role: META Controller | Rarity: ★★★★★
+●	Skill 1 – Mascot Costume
+○	➡️ Applies Weak effect & Slow effect for 2 turns (only targets front row units if there is).
+●	Skill 2 – Floor Redesign
+○	➡️ +1 turn cooldown for all enemies.
+○	🟢 All allies gain +10% Attack and Speed (1 turn).
+○	⏳ Cooldown: 4 turns
+●	Skill 3 – Overwhelming Leadership
+○	➡️ Inflicts the whole enemy team 🌀 Entranced (1 turn). Behavior varies by role:
+■	Fighters/Assassins: attack allies randomly.
+■	Controllers: cast debuff on allies.
+■	Supports: buff or heal Celyn’s team.
+■	Tanks: redirect next hit. (If 2+ Tanks are affected, the redirected damage is evenly split between them.)
+■	If the target is stunned or frozen during Entranced, the effect is not removed.They will still perform the compelled action on the next turn.
+○	⏳ Cooldown: 4 turns
+●	Passive – Broken Confidence
+○	➡️ First damage taken: Stunned for 1 turn.
+7. Felix W.
+Attack: 33 | Health: 135 | Speed: 39 | Role: META Assassin | Rarity: ★★★★★
+●	Skill 1 – Precise Punch
+○	➡️ 60% damage to the closest. +10% vs. Support/Controller.
+●	Skill 2 – Eratic Drums
+○	➡️ All allies gain +5% Speed permanently.
+○	🎵 Triggers ♪ Music.
+○	⏳ Cooldown: 3 turns
+●	Skill 3 – Ball Skills
+○	If Felix is above 50% HP: 50% damage + −30% Buff Receive Rate. (Can only target the front row)
+○	🏀 Grants the Baller effect for 2 turns.
+○	⏳ Cooldown: 3 turns
+○	If Below 50% HP: 40% damage to the farthest enemy(back row), 30% chance to 🔇Silence.
+○	⏳ Cooldown: 3 turns
+●	Skill 4 – Fortuner Drive
+○	➡️ 120% damage to enemies in square.
+○	💥 Instantly kills enemies below 10% HP.
+○	🔓 Unlock: Must kill 1 enemy first.
+○	⏳ Cooldown: 8 turns
+●	Passive – Second Chance
+○	➡️ If fatal hit received: survives at 1 HP, clears debuffs.
+○	✨ Cannot be bypassed.
+8. Frea
+Attack: 19 | Health: 94 | Speed: 23 | Role: Fighter | Rarity: ★★★★
+●	Skill 1 – Slap
+○	➡️ 50% damage to the closest enemy.
+●	Skill 2 – Unnerving Glare
+○	➡️ Applies Weak effect. 60% chance to 🔇Silence (1 turn).
+○	⏳ Cooldown: 3 turns
+●	Skill 3 – Endless Pinch
+○	➡️ 70% damage. Can be reused, but success rate halves each time.
+○	💀 If kill: reuse chance stays.
+○	⏳ Cooldown: 4 turns
+●	Passive – Confusing Mandarin
+○	Start of battle: 1 random enemy is 😵 Disoriented.
+○	20% chance to Disorient with Skill 2/3.
+○	Frea is immune to all love-related debuffs.
+9. Grace V
+Attack: 12 | Health: 81 | Speed: 9 | Role: Support | Rarity: ★★★★
+●	Skill 1 – Radiant Shield
+○	➡️ Shields lowest-HP ally (50% of her Max HP) + herself (100% of her Attack).
+●	Skill 2 – Divine Rant
+○	➡️ Grants 30 Shield to all allies in the same row.
+○	⏳ Cooldown: 4 turns
+●	Skill 3 – Divine Light
+○	➡️ Grants 40 Shield to all allies and removes 1 debuff each.
+○	🌟 Grants 🌟 Divine (1 turn).
+○	⏳ Cooldown: 5 turns
+●	Passive – Grace’s Blessing
+○	Shields stack.
+○	If Grace dies, her shields vanish.
+10. Jessica
+Attack: 8 | Health: 53 | Speed: 7 | Role: Support | Rarity: ★★★★
+●	Skill 1 – Hot Meal
+○	➡️ Heals 2 lowest-HP allies for 50% of her HP. Also self-heals 20%.
+●	Skill 2 – Emotional Tears
+○	➡️ Removes up to 2 debuffs from one ally.
+○	✨ If no debuffs: heals by 100% of her Attack instead.
+○	⏳ Cooldown: 3 turns
+●	Skill 3 – Cheering Squad
+○	➡️ Heals all allies 10% Max HP and grants ✨ Encouraged.
+○	⏳ Cooldown: 4 turns
+●	Passive – Healing Touch
+○	➡️ +10% Healing Bonus per heal (up to +50%).
+11. Joash
+Attack: 17 | Health: 92 | Speed: 31 | Role: Controller | Rarity: ★★★★
+●	Skill 1 – Cartwheel Chaos
+○	➡️ Hits 3 random enemies. Each hit = 20% damage + 😵 Disoriented (1 turn).
+●	Skill 2 – Piano Smash
+○	➡️ Stuns 1 random enemy (1 turn).
+○	🎵 Triggers ♪ Music.
+○	⏳ Cooldown: 3 turns
+●	Skill 3 – Handstand
+○	➡️ Invulnerable to single-target skills (1 turn).
+○	💢 50% chance to 🔇Silence attackers that hit him next turn.
+○	⏳ Cooldown: 4 turns
+●	Passive – Chaotic Presence
+○	35% chance that attackers mis-target or miss.
+○	Below 40% HP: Health bar and status hidden.
+12. Clement
+Attack: 29 | Health: 150 | Speed: 37 | Role: Fighter/Assassin | Rarity: ★★★★
+●	Skill 1 – Triple Jump
+○	➡️ Hits 3 random enemies for 30% each. 15% chance to Stun each enemy (1 turn).
+●	Skill 2 – Heavy Barbell
+○	➡️ 60% damage to a random line of enemies (up to 2 enemies).
+○	💪 Gains 🏋️ Gym (2 turns).
+○	⏳ Cooldown: 3 turns
+●	Skill 3 – Ankle Breaker
+○	➡️ 80% damage to the nearest enemy.
+○	🦶 Applies Ankle Break (−40% Speed, no counter for 2 turns, and ⚠️ If they attempt to use any other skill other than their skill 1, they take 10% of their Max Health as damage instead (the skill will still be used).
+○	🏀 Grants the Baller effect for 2 turns.
+○	⏳ Cooldown: 4 turns
+●	Passive – Ankle Injury
+○	After 3 uses of Skill 1/3 combined: Self-Ankle Break for 2 turns and (−5 Speed, and Skills 1/3 are unable to be used).
+○	If all skills are on cooldown, heals 5 HP.
+13. Keiron
+Attack: 38 | Health: 179 | Speed: 27 | Role: Fighter | Rarity: ★★★★★
+●	Skill 1 – Crushing Kick
+○	➡️ 65% Attack damage to a single enemy. Applies Slow effect (1 turn).
+○	⏳ Cooldown: 3 turns
+●	Skill 2 – Counter State
+○	➡️ Enters counter state for 2 turns. Can’t act until counter state ends, but tackles attackers for 40% Attack damage.
+○	⏳ Cooldown: 4 turns
+●	Skill 3 – Devastating Combo
+○	➡️ 4-hit combo, 150% total damage. If target is under 5% HP after, they're instantly executed. Ignores shields.
+○	⏳ Cooldown: 5 turns
+●	Passive – Suicidal Tendencies / August Fifth
+○	Starts with 45 Sanity; loses 9 after his turn. At 0 or less, Keiron self-destructs.
+○	Below 15 Sanity: becomes unstable, attacks randomly.
+○	Rejects all healing/shields (except from Alveria), any healing/shield attempts by others: -3 of his Sanity.
+14. Kevin
+Attack: 18 | Health: 82 | Speed: 15 | Role: META Support | Rarity: ★★★★★
+●	Skill 1 – Drag and Drop
+○	➡️ Moves 1 enemy to a new spot(switch), applies Slow effect (2 turns).
+○	🎯 Marks them as Coded (+20% damage taken) for 2 turns
+●	Skill 2 – Cheat Code Boost
+○	➡️ Buffs 3 random allies:
+○	+40% Attack & all skills −1 cooldown for next turn
+○	⏳ Cooldown: 3 turns
+●	Skill 3 – Glitch Slam
+○	➡️ Scrambles all enemy positions
+○	Coded enemies: Stunned (1 turn)
+○	All enemies: take 30% more damage (1 turn)
+○	+10% confusion damage
+○	⏳ Cooldown: 6 turns
+●	Passive – Ctrl+C, Ctrl+V
+○	➡️ First ally death: clones them at 25% HP, full stats
+○	🧬 Clone is permanently Coded
+○	🔁 One-time use per match
+15. Laudya
+Attack: 15 | Health: 86 | Speed: 20 | Role: Support/Controller | Rarity: ★★★★
+●	Skill 1 – Combat Recall
+○	➡️ Applies Weak effect & Slow effect (2 turns) to 1 enemy.
+○	🎯 40% chance to 🔇Silence (1 turn)
+●	Skill 2 – Memorized
+○	➡️ Marks 2 enemies (2 turns)
+○	25% crit chance vs them
+○	If they use their respective last skill (2/3/4): damage −50%
+○	⏳ Cooldown: 3 turns
+●	Passive – I Remember Your Name
+○	➡️ Gains 1 stack per buff, shield, debuff, or attack gain
+○	At 4 stacks: Copies the last effect to all allies/enemies
+○	🔁 Resets to 0 after trigger
+16. Leonardo Cornelius
+Attack: 22 | Health: 177 | Speed: 13 | Role: Tank/Support | Rarity: ★★★★
+●	Skill 1 – Sharp Note
+○	➡️ 30% damage, −10% target HP
+○	🎵 Triggers ♪ Music
+●	Skill 2 – Resonant Shield
+○	➡️ Shield (25) to self + lowest-HP ally (2 turns)
+○	🎵 Triggers ♪ Music
+○	⏳ Cooldown: 3 turns
+●	Passive – Battle Prelude
+○	➡️ On start:
+■	Enemies receive Slow effect for 2 turns.
+■	Allies: 5% his max Health shield (1 turn)
+○	✨ Doubles all team ♪ Music buffs when present
+17. Margaretha
+Attack: 11 | Health: 77 | Speed: 14 | Role: Support | Rarity: ★★★★
+●	Skill 1 – Energy Pulse
+○	➡️ 20% damage
+○	💢 Removes Shield from Supports/Controllers hit
+●	Skill 2 – Row Heal
+○	➡️ Heals self and 2 row-mates (20% of her max health)
+○	⏳ Cooldown: 3 turns
+●	Skill 3 – Vanish
+○	➡️ Grants invisibility and invulnerability to self + 1 ally of her choice, cleanses both from any debuffs
+○	⏳ Cooldown: 4 turns
+●	Passive – Fading Defense
+○	➡️ If HP <40%, auto-invisibility and invulnerability + cleanse all debuffs (1 time per battle)
+18. Meiliana
+Attack: 14 | Health: 88 | Speed: 36 | Role: Assassin | Rarity: ★★★★
+●	Skill 1 – Dash Strike
+○	➡️ Charges through line, 70% damage per enemy.
+●	Skill 2 – Spinning Sweep
+○	➡️ AoE strike (99% damage) (3 hit combo 33% each)
+○	⏳ Cooldown: 4 turns
+●	Passive – Chloe Ting Fan
+○	➡️ Starts battle with +10% Speed, +30% damage reduction (3 turns)
+19. Nelsen
+Attack: 25 | Health: 94 | Speed: 33 | Role: Assassin | Rarity: ★★★★
+●	Skill 1 – Toxic Spit
+○	➡️ 70% single-target damage
+●	Skill 2 – Gas Cloud
+○	➡️ Square AoE: 40% damage per turn (2 turns)
+○	💀 Inflicts Poison: Reduces their health by 5% of their current health and prevents healing for 2 turns
+○	⏳ Cooldown: 3 turns
+●	Passive – Work-Life Split
+○	Every kill: +10% permanent damage
+○	Round 1–5: +20% damage
+○	After Round 5: −30% damage
+20. Neville
+Attack: 34 | Health: 165 | Speed: 30 | Role: Fighter | Rarity: ★★★★
+●	Skill 1 – One-Inch Punch
+○	➡️ 40% damage to 1 enemy.
+●	Skill 2 – Slam Throw
+○	➡️ 60% damage to front row target if there is, 25% AoE around them
+○	⏳ Cooldown: 4 turns
+●	Passive – Red Hoodie Mode
+○	➡️ After 6 hits (combo attacks count as multiple hits) (not blocked by shield):
+■	+40% all stats
+■	Heals 30 HP
+■	Screams: Stuns everyone, including teammates
+○	🔁 Triggers once per battle
+21. Alanna
+Attack: 20 | Health: 197 | Speed: 2 | Role: META Tank | Rarity: ★★★★★
+●	Skill 1 – Loud Taunt
+○	➡️ Taunts back row, redirects attacks to self for 1 turn. Gains 15% damage reduction.
+○	⏳ Cooldown: 2 turns
+●	Skill 2 – Charging Slam
+○	➡️ Deals 60% of target's current Health as damage(only 20% to bosses).
+○	⏳ Cooldown: 3 turns
+●	Passive – Indomitable Wall
+○	Every time Alanna is hit by a skill, she restores 10 Health—even while Stunned or Frozen.
+○	At the end of the turn, if she is hit, her Skill 1’s cooldown is reduced by 1 (Triggers once per turn).
+○	However, all healing effects from allies are 40% less effective on her.
+○	If Alanna has no usable skill available on her turn, she will skip the turn.
+22. Sanjaya
+Attack: 28 | Health: 186 | Speed: 16 | Role: Tank | Rarity: ★★★★★
+●	Skill 1 – Sweaty Hands
+○	➡️ 40% damage to 1 enemy.
+●	Skill 2 – Mask On
+○	➡️ Gains 20% damage reduction shield (2 turns)
+○	⏳ Cooldown: 3 turns
+●	Skill 3 – Gaming Escape
+○	➡️ Immune to all damage & effects for 1 turn
+○	🕹️ Usable 3× per battle
+○	⏳ Cooldown: 5 turns
+●	Skill 4 – Hoodie Mode
+○	➡️ Shield (30), +10% Health regen (3 turns)
+○	⏳ Cooldown: 4 turns
+●	Merged 🧬 Synergy Skill – Hoodie Protocol (if Kevin is on the team)
+○	Unlocks on Turn 3, replaces Skill 2 & 4
+○	🛡️ Shield 30, Regen +10%, Damage Reduction +20%, Immune to CC (1 turn)
+○	⏳ Cooldown: 5 turns (merged)
+●	Passive – Fortress Mode
+○	When Mask On + Hoodie Mode/Hoodie Protocol is active:
+■	+10% damage reduction
+■	Reflects all reduced damage
+■	Immune to Crowd Control
+23. Winston
+Attack: 31 | Health: 152 | Speed: 23 | Role: Fighter | Rarity: ★★★★
+●	Skill 1 – Simple Punch
+○	➡️ 40% damage to a single enemy.
+●	Skill 2 – Biology Serum
+○	➡️ Restores 5 Health, +30% Attack for 2 turns.
+○	✨ Buff doubles if HP <30%
+○	⏳ Cooldown: 4 turns
+●	Skill 3 – Gamble Roll
+○	➡️ 5% chance: 150% damage + 15% of their Current Health
+○	➡️ 25% chance: 100% damage
+○	➡️ 75% chance: 50% damage
+○	Single enemy btw :3
+○	⏳ Cooldown: 5 turns
+●	Passive – Caffeinated Buffs
+○	➡️ Every 3 turns: drinks coffee, gains +5% Attack & Speed (stacks).
+○	Each time Gamble Roll is used, Winston gains 1 Stack of Focus (max 3).
+○	For each stack:
+■	5% chance to trigger the 100% or 200% result
+■	– 5% chance to land the 50% result
+○	🌀 When he reaches 3 stacks, the next Gamble Roll is guaranteed to hit 100% or 200% — then all Focus stacks reset.
+24. Velyn
+Attack: 6 | Health: 34 | Speed: 26 | Role: Support | Rarity: ★★★★
+●	Skill 1 – Soundwave Trio
+○	➡️ 3 waves of AoE sound, each dealing 50% Attack to all enemies.
+○	🎵 Triggers ♪ Music (1 turn)
+●	Skill 2 – Sonic Tempo
+○	➡️ Increases Speed of 3 chosen allies by 50% of their base Speed + 40% of Velyn’s Speed (2 turns)
+○	🎵 Triggers ♪ Music (1 turn)
+○	⏳ Cooldown: 3 turns
+●	Passive – Graceful Dodge
+○	➡️ 40% chance to dodge any enemy attack.
+25. Hananya
+Attack: 16 | Health: 130 | Speed: 12 | Role: Controller | Rarity: ★★★★
+●	Skill 1 – Dramatic Song
+○	➡️ Applies Slow effect to the 3 closest enemies until next turn and removes 1 random buff from each target hit.
+○	🎵 Triggers ♪ Music (1 turn)
+●	Skill 2 – Gendered Performance
+○	➡️ 50% chance to stun all male enemies (1 turn), but also stuns one male ally randomly (1 turn)
+○	⏳ Cooldown: 4 turns
+●	Passive – Male Ally Support
+○	➡️ All male allies gain +15% base Health.
+○	➡️ At the start of Round 2, Hananya grants the special effect “Jomok” to all eligible male allies for 1 turn.
+○	Eligible characters: Nelsen, Neville, Winston, Calvin, MSW, and Clement.
+○	🪩 Jomok (1 turn):
+■	If the affected unit is targeted by any skill (damage or support), they instantly trigger a Jomok Counter — a modified version of their Skill 1.
+■	Counter activates immediately and does not consume their turn.
+■	Only triggers once, and expires at the end of the turn if unused.
+○	🎭 Each unit can only receive Jomok once per battle.
+SPOILER TERRITORY
+Season 1 (The Junior Longing) Limited Characters:
+Vianny *Limited
+Attack: 29 | Health: 70 | Speed: 25 | Role: Assassin | Rarity: ★★★★★
+●	Skill 1 – Flurry of Pictures
+○	🔁 Deals 50% Attack damage to 1 enemy. Then hits up to 2 back-row enemies in a triangle pattern for 30% damage.
+●	Skill 2 – Heartbreak Stare
+○	🔁 Hits all front-row enemies for 80% Attack damage.
+○	➡️ If a front-row target dies, the hit transfers to the enemy directly behind.
+○	⏳ Cooldown: 4 turns
+●	Skill 3 – Infinite Charm
+○	🔁 Hits all enemies for 90% Attack damage.
+○	💘 Inflicts Love Struck on the 3 enemies with the lowest HP percentage (1 turn):
+■	Their attacks will target a random enemy on the battlefield
+○	👫 If piggybacked by Andrew: Inflicts Love Struck on 1 extra low-HP enemy (total 4).
+○	⏳ Cooldown: 5 turns
+●	Passive – Fierce Affection
+○	🔺 +20% damage to male characters
+○	❌ -50% damage to Andrew
+○	🌀 All debuffs applied to Vianny have their duration increased by 1 turn
+Agnes *Limited
+Attack: 10 | Health: 140 | Speed: 6 | Role: Tank | Rarity: ★★★★
+●	Skill 1 – A Painful Tap
+○	➡️ Deals 40% damage to the closest enemy.
+○	🛡️ Gains a Shield equal to 100% of damage dealt.
+●	Skill 2 – Melancholic Melody
+○	➡️ Heals self for 5% Max Health.
+○	🛡️ Gains a Shield (5) for 1 turn.
+○	🎵 Triggers ♪ Music for 1 turn.
+○	⏳ Cooldown: 3 turns
+●	🧬 Synergy Skill – Activated if Joash is present
+●	Skill 3 – Little Brother
+○	➡️ Agnes summons her little brother, Nando, to the battlefield for 3 turns.
+○	⏳ Cooldown: 5 turns
+●	Passive – Limp
+○	➡️ Agnes’s Speed is permanently reduced by 50% of her base Speed.
+Season 1.5 Side Story Event (A Lasting Heartbreak) Limited Characters:
+Alveria (嘘の愛) *Limited
+Attack: 20 | Health: 69 | Speed: 21 | Role: Fighter / Controller | Rarity: ★★★★★
+●	Skill 1 – Held Hands
+○	🌀 Deals 80% Attack damage to the closest enemy.
+○	💢 If the target is already debuffed, deals +20% bonus damage.
+○	🛑 Applies Slow effect for 1 turn.
+●	Skill 2 – Cuddles
+○	🌀 Deals 60% Attack damage to all enemies.
+○	🔻 Reduces Attack by 25% (1 turn).
+○	🔒 Reduces Buff Receive Rate by 25% (1 turn).
+○	✨ Alveria becomes Encouraged for 2 turns.
+○	⏳ Cooldown: 4 turns
+●	Skill 3 – Kiss on the Right Cheek
+○	🌀 Deals 120% Attack damage to 1 enemy.
+○	💔 Inflicts Fake Love (3 turns):
+■	Target takes +50% damage from Alveria.
+○	⏳ Cooldown: 6 turns
+●	Passive – Cold Warmth
+○	🚫 Cannot receive any buffs from allies.
+○	💧 Receives 25% less healing from all sources.
+○	✅ Can still be debuffed normally.
+Keiron (Dead) *Limited
+Attack: 24 | Health: 77 | Speed: 19 | Role: Assassin | Rarity: ★★★★
+●	Skill 1 – Remnants of Love
+○	🌀 Deals 75% Attack damage to a single enemy.
+○	🩸 Reduces Keiron(Dead)’s current Health by 15%.
+○	☠️ Gains 1 Rot.
+●	Skill 2 – No More Pain
+○	🌀 Attacks 3 random enemies, dealing 65% Attack damage to each.
+○	🩸 Reduces Keiron(Dead)’s current Health by 30%.
+○	☠️ Gains 1 Rot.
+○	⏳ Cooldown: 3 turns
+●	Passive – Grieving Echo
+○	📉 Starts battle with 1 Rot.
+○	💀 At 5 Rot, becomes permanently Stunned and cannot act further.
+○	💔 Keiron(Dead) always takes 2x damage from Alveria (嘘の愛) or Alveria.
+Season 2 Part 1 (Look Back) Guest/Limited Characters:
+Neville (Ayanokoji Wannabe) *Limited
+Attack: 25 | Health: 100 | Speed: 15 | Role: Controller | Rarity: ★★★★★
+●	Skill 1 – Emotionless Blow
+○	🌀 Deals 70% Attack damage to 1 enemy.
+○	❄️ 30% chance to Freeze (1 turn).
+○	➡️ If already Frozen, deals +30% bonus damage and extends Freeze by 1 turn.
+●	Skill 2 – Ice in His Veins
+○	🧊 Deals 90% Attack damage to the fastest enemy.
+○	❄️ 50% chance to Freeze (1 turn).
+○	📉 When Freeze ends: applies Slow effect for 2 turns.
+○	⏳ Cooldown: 3 turns
+●	Skill 3 – Calculated Distance
+○	🧊 Deals 60% Attack damage to all enemies.
+○	❄️ Freezes 2 random enemies with the lowest Speed (1 turn).
+○	⏳ Cooldown: 5 turns
+●	Passive – Absolute Detachment
+○	❌ Cannot be Taunted or Encouraged
+○	🔺 Gains +15% Attack if not affected by any buffs or debuffs
+○	⛔ Bonus is lost immediately when any status effect is received
+Irfandi *Limited
+Attack: 30 | Health: 140 | Speed: 8 | Role: Tank | Rarity: ★★★★
+●	Skill 1 – Peek-a-Boo Weaving
+○	👊 Deals 40% Attack damage to the closest enemy.
+○	🌀 If Irfandi hasn’t been hit since his last turn, he gains Evasion (1 turn).
+●	Skill 2 – Icebreaker Hook
+○	❄️ Deals 80% Attack damage to a single enemy.
+○	🧊 50% chance to inflict Freeze (1 turn).
+○	⏳ Cooldown: 4 turns
+●	Skill 3 – Taking Your Girlfriend Out on a Date
+○	💘 Taunts the enemy with the highest Attack for 2 turns.
+○	💪 Irfandi gains 🏋️‍♂️ Gym (1 turn).
+○	⏳ Cooldown: 5 turns
+●	Passive – Slippery Ego
+○	🎯 At the start of Round 1, Irfandi automatically taunts the enemy with the highest Attack for 1 turn.
+○	🫥 If Irfandi is targeted by 2 or more enemies in a single round, he gains Invisible (1 turn).
+Season 2.5 Side Story Event (Transfer Students) Limited Characters:
+MSW *Limited
+Attack: 24 | Health: 115 | Speed: 27 | Role: Controller | Rarity: ★★★★★
+Skill 1 – Method Act
+ 🔁 Deals 30% Attack damage to 2 random enemies.
+ 🎭 Each hit has a 50% chance to apply Censored (2 turns): Target cannot gain a buff.
+Skill 2 – Role Study
+ 🔁 Copies a random Skill 2 or 3 from any defeated character on the battlefield (ally or enemy).
+ ➡️ The copied skill replaces Role Study and can be used twice before reverting.
+ ❌ If no characters are defeated, this skill does nothing.
+ ⏳ Cooldown: 6 turns
+Skill 3 – The Understudy
+ 🔁 Deals 80% Attack damage to all enemies.
+ 🔇 Inflicts Silence on the 2 enemies with the highest Attack for 1 turn.
+ 🎭 The silenced enemies are also afflicted with Censored for 1 turn.
+ ⏳ Cooldown: 5 turns
+Skill 4 – Final Performance
+ 🔁 Consumes all Performance stacks.
+ ➡️ Instantly copies the ultimate skill of the targeted enemy and uses it against all enemies.
+ 💥 The copied ultimate’s damage scales with MSW’s Attack.
+ ⏬ Cooldown reduced by 1 turn for every 3 Performance stacks consumed.
+ ⏳ Cooldown: 8 turns
+Passive – The Chameleon
+ 🛡 Immune to all forms of Taunt and Entranced.
+ 🎭 Gains 1 stack of Performance whenever any skill is used by anyone on the battlefield (ally or enemy).												 🎭 Whenever MSW defeats an enemy, he immediately gains 3 Performance stacks and refreshes the cooldown of Role Study.
+ 📦 Performance stacks are only consumed when MSW uses Final Performance.
+
+Adelynn *Limited
+
+ Attack: 8 | Health: 138 | Speed: 14 | Role: Support | Rarity: ★★★★
+Skill 1 – Graceful Flourish
+ 🔁 Heals the ally with the lowest HP by 15% of their Max HP.
+ 🎭 Grants them +20% Speed for 1 turn.
+ 🎯 40% chance to apply Censored (2 turns) to a random enemy: Target cannot gain buffs.
+Skill 2 – Kitchen Harmony
+ 🔁 Heals all allies by 10% of their Max HP.
+ 🍲 Grants all allies +15% Attack and +15% Defense for 2 turns.
+ ⏳ Cooldown: 4 turns
+Skill 3 – Creative Spark
+ 🔁 Heals all allies by 20% of their Max HP.
+ 🎭 Extends all positive effects on allies by +1 turn.
+ 🎯 Removes 1 random buff from all enemies.
+ ⏳ Cooldown: 5 turns
+Passive – Curtain Call
+ 🎭 At the start of Adelynn’s turn, dispels 1 random buff from a random enemy.
+ 💖 Whenever an enemy buff is removed (by her or allies), the lowest-HP ally heals for 5% of their Max HP.
+
+
+ 
+Season 2 Part 2 (Look Back) Guest/Limited Characters:
+Brandon *Limited
+Attack: 27 | Health: 95 | Speed: 15 | Role: Assassin | Rarity: ★★★★★
+________________________________________
+Skill 1 – Loud Coughing Fit
+ ➡️ Deals 60% Attack damage to each target in a triangular pattern hitting up to 3 enemies (1 front, 2 diagonals behind).
+.
+ 🩸 30% chance to inflict Bleed to each enemy (2 turns).
+ 
+________________________________________
+Skill 2 – Project Sekai On Full Volume
+ 🔊 Deals 80% Attack damage to the 2 closest enemies.
+ 🩸 Inflicts Bleed (2 turns).
+ 🎵 Enemies affected by Bleed from this skill receive -20% Healing for 1 turn.
+⏳ Cooldown: 3 turns
+________________________________________
+Skill 3 – Screaming Head Bash
+ ➡️ Deals 120% Attack damage (3 hit combo 40% each) to all enemies.
+ 🩸 Inflicts Bleed (2 turns) on enemies and on himself.
+ ⏳ Cooldown: 5 turns
+________________________________________
+Passive – A bit autistic
+🌀 At the start of battle, Brandon becomes Fixated on one of his 3 skills (randomly chosen).
+ ✨ The Fixated Skill is marked.
+While fixated:
+●	Using the Fixated Skill grants +5% permanent Attack (stacks).
+
+●	At the end of the round, if he used that skill this turn, he automatically repeats it (free action).
+
+📉 After 2 successful repeats, Brandon becomes:
+●	Silenced for 1 turn, but
+
+●	Gains +50% Speed during that round.
+
+Cherrilyn *Limited
+
+ Attack: 12 | Health: 133 | Speed: 10 | Role: Support | Rarity: ★★★★
+________________________________________
+Skill 1 – Gentle Touch
+ 💖 Restores Health to the lowest-HP ally equal to 12% of Cherrylin’s Max Health.
+ 🌱 Grants Healing Over Time (HoT) for 2 turns (heals 6% of her Max Health per turn).
+________________________________________
+Skill 2 – Warmth of Presence
+ 🌸 Heals all allies for 10% of Cherrylin’s Max Health.
+ 🌈 Extends all active Healing Over Time effects on allies by 1 turn.
+ ⏳ Cooldown: 3 turns
+________________________________________
+Skill 3 – Calm Reassurance
+ 🌟 Selects 1 ally and grants a strong Healing Over Time effect for 3 turns (each turn restores 12% of Cherrylin’s Max Health).
+ 🛡️ Grants 30% Damage Reduction for 2 turns.
+ ✨ Healing Over Time stacks with other HoT effects.
+ ⏳ Cooldown: 5 turns
+________________________________________
+Passive – Heartbeat Alarm
+ 🩺 When a teammate falls below 30% Health for the first time, Cherrylin instantly heals them for 18% of her Max Health.
+ 💫 Triggers automatically, does not consume her turn.
+ ⚠️ Can trigger up to 2 times per battle, and only once per ally.
+
+
