@@ -3,6 +3,8 @@ import { initializeApp } from "firebase/app";
 import { getFirestore, addDoc, query } from "firebase/firestore";
 import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import { collection, getDocs } from "firebase/firestore";
+import char1Image from '/charImg/char1.jpeg';
+import skillImage from '/skill.png';
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -139,7 +141,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         nameSpan.textContent = selectedCharacters[i].name;
         healthPoints.textContent = `${selectedCharacters[i].health}`;
         // healthPoints.textContent = `${selectedCharacters[i].currentHealth}/${selectedCharacters[i].health}`;
-        card.style.background = `url('./charImg/char1.jpeg') center center / cover no-repeat`;
+        card.style.background = `url(${char1Image}) center center / cover no-repeat`;
         slot.dataset.charId = selectedCharacters[i].id; // instead of name
       }
     });
@@ -183,7 +185,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       charElement.innerHTML = `
       <div class="charCard-selected charCardRoundedBorders" data-char-id="${char.id}">
         <span class="charName-selection selectionSpan">${char.name}</span>
-        <img src="./charImg/char1.jpeg" class="charImg-selection">
+        <img src="/charImg/char1.jpeg" class="charImg-selection">
       </div>
       `;
       
@@ -402,7 +404,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       const skillCard = document.createElement('div');
       skillCard.className = 'skillCard';
       skillCard.innerHTML = `
-        <img src="skillPng.png" class="skillImg">
+        <img src="${skillImage}" class="skillImg">
         <span class="skillName">${skill.skillName}</span>
       `
       skillCard.addEventListener('click', () => {
@@ -487,7 +489,7 @@ document.addEventListener('DOMContentLoaded', async () => {
           
           console.log(`${activeCharacter.name} (AI) performed an action.`);
           endCurrentTurn(activeCharacter);
-        }, 1000);
+        }, 3500);
       } 
     } else {
       processNextTurn();
