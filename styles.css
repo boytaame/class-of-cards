@@ -15,6 +15,48 @@ body {
 }
 
 
+.notifHistoryButton {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    width: 55px;
+    height: 55px;
+    font-size: 24px;
+    border-radius: 50%;
+    border: 2px solid rgba(0, 0, 0, 0.281);
+    cursor: pointer;
+}
+
+.notifHistoryModal {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 450px;
+    height: 550px;
+    background-color: rgba(0, 0, 0, 0.644);
+    border-radius: 8px;
+    padding: 20px;
+    z-index: 4;
+    text-align: center;
+}
+
+.notifHistoryModal > h3 {
+    font-size: 24px;
+    color: white;
+}
+
+.notifHistoryModal > .notifHistory > p {
+    font-size: 18px;
+    color: white;
+}
+
+.notifHistoryModal > .notifHistory {
+    height: 460px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
 #notificationsBox {
     position: absolute;
     left: 50%;
@@ -66,14 +108,6 @@ body {
 
 .charName {
     user-select: none;
-}
-
-.roundStats {
-    background-color: white;
-    width: 100%;
-    height: 17vh;
-    top: 0;
-    bottom: 0;
 }
 
 .skillCardsBox{
@@ -182,7 +216,7 @@ body {
     /* Ensure pages fill the height of their parent (.main-wrapper) if needed */
     /* For gamePage, its content (roundStats, gameBoard, skillCardsBox) defines its height */
     /* For loginPage, we want it to fill the screen */
-    height: 100%; 
+    max-height: 100%; 
     display: flex; /* Default display for active pages */
     flex-direction: column; /* Organize content vertically within the page */
     justify-content: flex-start; /* Align content to the top */
@@ -202,11 +236,11 @@ body {
     position: absolute;
     background-color: white;
     width: 420px;
-    height: 550px;
+    height: fit-content;
     margin: auto;
     z-index: 3;
-    padding: 10px 30px;
-    border-radius: 10px;
+    padding: 10px 30px 70px 28px;
+    border-radius: 8px;
 }
 
 #gameBoard {
@@ -372,22 +406,85 @@ body {
 
 
 .turnsDiv {
+    position: relative; /* This is crucial for absolute positioning of its children */
     display: flex;
-    justify-content: center;
+    justify-content: space-between; /* Pushes past and upcoming containers to the edges */
     align-items: center;
-    gap: 10px;
+    width: 80%; /* Or a fixed width like 600px, adjust as needed */
+    height: 50px; /* Give it a fixed height to align things against */
     user-select: none;
+    gap: 300px;
 }
 
-.turns {
-    font-size: 35px;
+/* 2. The main, centered turn element */
+.turnsDiv h3.player-turn {
+    background-color: rgba(0, 0, 0, 0.1); /* A slightly visible black background */
 }
+
+/* 3. Containers for the side turns */
+.past-turns-container,
+.upcoming-turns-container {
+    display: flex;
+    gap: 35px;
+    width: 45%; /* Occupy the space on either side of the center */
+}
+
+/* Justify the text appropriately */
+.past-turns-container {
+    justify-content: flex-end; /* Pushes past turns towards the center */
+}
+.upcoming-turns-container {
+    justify-content: flex-start; /* Pushes upcoming turns away from the center */
+}
+
+/* 4. General styling for ALL individual turn slots (past, present, future) */
+.turnsDiv h3 {
+    opacity: 0.5;
+    font-size: 16px;
+    font-weight: normal;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    min-width: 80px; /* Give them a minimum width */
+    text-align: center;
+    padding: 2px 8px;
+    border-radius: 5px;
+}
+
+.turnsDiv .turns {
+    position: absolute; /* Lifts it out of the normal flow */
+    left: 50%;          /* Moves its left edge to the center */
+    top: -10%;
+    transform: translate(-50%, -50%); /* Shifts it back by half its own width/height to be perfectly centered */
+
+    /* Styling for the main turn */
+    font-size: 30px;
+    font-weight: bold;
+    color: #000;
+    transition: all 0.3s ease;
+}
+
+
+
+
 
 .prevturns {
     opacity: 0.5;
 }
+.prevturns1 {
+    opacity: 0.5;
+}
+.prevturns2 {
+    opacity: 0.5;
+}
 
 .upcomingturns {
+    opacity: 0.5;
+}
+.upcomingturns1 {
+    opacity: 0.5;
+}
+.upcomingturns2 {
     opacity: 0.5;
 }
 
@@ -409,13 +506,6 @@ body {
 }
 
 
-#selected-chars-list {
-    display: flex;
-    flex-wrap: wrap;
-    width: 330px;
-    gap: 10px;
-}
-
 .charCardRoundedBorders {
     border-radius: 10px;
     border: 2px solid rgb(255, 255, 255);
@@ -423,7 +513,6 @@ body {
 
 
 #selected-chars {
-    width: fit-content;
     width: 20%;
     border-left: 1px solid white;
     padding-left: 18px;
@@ -433,6 +522,10 @@ body {
 }
 
 #selected-chars-list {
+    display: flex;
+    flex-wrap: wrap;
+    width: 330px;
+    gap: 10px;
     justify-content: center;
     align-items: center;
     text-align: center;
@@ -445,6 +538,7 @@ body {
     background-color: white;
     color: black;
     margin-top: 25px;
+    margin-bottom: 50px;
     cursor: pointer;
     transition: transform 0.2s ease, background-color 0.2s ease, color 0.2s ease;
 }
@@ -509,6 +603,10 @@ body {
     cursor: pointer;
 }
 
+#characterSelectoin > .overlay {
+    z-index: 1;
+}
+
 .overlay {
     position: fixed;
     top: 0;
@@ -516,7 +614,7 @@ body {
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.5);
-    z-index: 10;
+    z-index: 2;
 }
 
 .charCard, .charCard-selection {
@@ -565,6 +663,7 @@ body {
 }
 
 .roundStats {
+    
     font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     top: 0;
     left: 0;
@@ -580,7 +679,7 @@ body {
 .roundStats > h2 {
     margin: 0;
     padding: 0;
-    padding-top: 30px;
+    padding-top: 0px;
     user-select: none;
 }
 
@@ -601,11 +700,13 @@ body {
     margin: 30px 30px 0px 30px;
     color: white;
     width: fit-content;
+    height: auto;
 }
 
 #characterSelection > .charSelectPage {
     display: flex;
     margin-right: 0px;
+    align-items: flex-start;
 }
 
 #characterSelection > h1 {
@@ -618,9 +719,9 @@ body {
     color: white;
     display: flex;
     flex-wrap: wrap;
-    gap: 16px;
+    gap: 15px;
     width: fit-content;
-    max-height: 100%;
+    height: auto;
     overflow: auto;
     padding: 8px;
 }

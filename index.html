@@ -6,6 +6,7 @@
     <title>CLASS OF CARDS</title>
     <link rel="icon" type="image/x-icon" href="logo/1card.png">
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
     <div id="login-page" class="page hidden">
@@ -23,10 +24,11 @@
     </div>
 
 
-    <div class="overlay page hidden"></div>
+    
 
     <div id="character-info-selection" class="hidden">
         <h1></h1>
+        
         <div class="charCard-selection">
             <span class="charName-selection selectionSpan"></span>
             <!-- <img src="./charImg/char1.jpeg" class="charImg-selection hidden"> -->
@@ -54,13 +56,35 @@
 
 
     <div id="main-game" class="page hidden">
+        <button class="notifHistoryButton"><i class="fa fa-history"></i></button>
+        
+        <div class="overlay page hidden"></div>
+        <div class="notifHistoryModal hidden">
+            <h3>Notification History</h3>
+            <div class="notifHistory">
+                <p>No Notifications</p>
+            </div>
+        </div>
+
+
+
         <div class="roundStats">
             <h2>Current Round:</h2>
             <h3 class="current-round"></h3>
             <div class="turnsDiv">
-                <h3 class="prevturns"></h3>
+                <div class="past-turns-container">
+                    <h3 class="prevturns2"></h3>
+                    <h3 class="prevturns1"></h3>
+                    <h3 class="prevturns"></h3>
+                </div>
+
                 <h3 class="turns"></h3>
-                <h3 class="upcomingturns"></h3>
+
+                <div class="upcoming-turns-container">
+                    <h3 class="upcomingturns"></h3>
+                    <h3 class="upcomingturns1"></h3>
+                    <h3 class="upcomingturns2"></h3>
+                </div>
             </div>
         </div>
 

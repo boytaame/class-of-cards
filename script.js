@@ -35,10 +35,22 @@ let enemyCharacters = [];
 const MAX_SELECTED_CHARS = 6;
 let battleStarted = false;
 let turns = 0;
+let notificationHistory = []; // <-- ADD THIS NEW ARRAY
+let currentSkill;
+let playerTeam = [];
+let enemyTeam = [];
+let activeCharacter = null;
+let battleQueue = [];
+let currentTurnIndex = 0;
+
+
+
+
 
 
 
 const charSlot = document.querySelectorAll('.character-slot');
+
 
 const charSwap = function () {
   if (battleStarted) return;
@@ -91,6 +103,165 @@ charSlot.forEach(slot => {
 
 
 document.addEventListener('DOMContentLoaded', async () => {
+
+
+
+
+
+
+
+
+  // !!! ANGEL ENGINE TERRITORY !!!
+
+
+
+function angel_CalcSkillDamage(attacker, damageEffect) {
+
+  if (!damageEffect) {
+    return 0;
+  }
+
+  let baseValue = 0;
+  if (damageEffect.basedOn === "attack") {
+    baseValue = attacker.attack;
+  } else if (damageEffect.basedOn === "maxHealth") {
+    baseValue = attacker.health;
+  }
+
+  const finalDamage = baseValue * damageEffect.multiplier;
+  
+  return Math.ceil(finalDamage);
+}
+
+
+
+
+
+
+
+
+function angel_CalcDamage(incomingDamage, target) {
+    let finalDamage = incomingDamage;
+
+    // --- Step 1: Apply the character's base Defense stat ---
+    // This directly implements the formula: Defense / (Defense + 200)
+    // We check if defense exists and is greater than 0 to avoid errors.
+    if (target.defense && target.defense > 0) {
+        const defenseReduction = target.defense / (target.defense + 200);
+        finalDamage *= (1 - defenseReduction);
+    }
+
+    // --- Step 2: Apply all other active damage reduction effects multiplicatively ---
+    // This part is the key to making your game scalable.
+    // We will check the target's 'activeEffects' array for any effect that reduces damage.
+    if (target.activeEffects && target.activeEffects.length > 0) {
+      for (const effect of target.activeEffects) {
+        // Let's say a damage reduction buff has a type of 'damageReduction'
+        if (effect.type === 'damageReduction') {
+          // The effect's 'multiplier' would be 0.15 for a 15% reduction.
+          // This line performs the multiplicative stacking.
+          finalDamage *= (1 - effect.multiplier);
+        }
+    }
+    }
+
+    // --- Step 3: Return a whole number ---
+    // We use Math.ceil() so that an attack dealing 76.24 damage becomes 77.
+    // This prevents tiny health fractions and feels better in-game.
+    return Math.ceil(finalDamage);
+}
+
+
+async function angelDispatcher(event) {
+  if (!currentSkill) {
+    selectedSkillDisplay.textContent = 'Select A Skill!';
+    return;
+  }
+
+  const targetSlot = event.currentTarget; // The enemy slot that was clicked
+  const attacker = activeCharacter; // The currently active player character
+  const targetCharId = targetSlot.dataset.charId;
+  const targetChar = enemyTeam.find(c => c.id === targetCharId);
+  const skillToUse = currentSkill;
+  
+  currentSkill = null;
+  updateSelectedSkillDisplay();
+  
+  await angelEngine(attacker, skillToUse, [targetChar]);
+  
+  endCurrentTurn(attacker);
+}
+
+
+
+
+
+async function angelEngine(caster, skillData, primaryTargets) {
+  showNotification(`${caster.name} used ${skillData.skillName}`);
+
+  for (const effect of skillData.effects) {
+    const finalTargets = angel_findFinalTargets(caster, effect.target, primaryTargets)
+    
+    switch (effect.type) {
+      case "damage" :
+        for (const target of finalTargets) {
+          const rawDamage = angel_CalcSkillDamage(caster, effect);
+          const finalDamage = angel_CalcDamage(rawDamage, target);
+
+          showNotification(`${target.name} takes ${finalDamage} damage from ${caster.name} using ${skillData.skillName}!`);
+          target.currentHealth = Math.max(0, target.currentHealth - finalDamage);
+
+          const targetSlot = document.querySelector(`[data-char-id="${target.id}"]`);
+          updateHealthDisplay(targetSlot, target);
+
+          if (target.currentHealth <= 0) {
+            // Handle death
+            targetSlot.querySelector('.charCard').style.filter = 'grayscale(100%) brightness(50%)';
+          }
+        }
+        break;
+
+      case "heal" :
+        showNotification(`healing skill used, ${effect.skillName}`)
+        break;
+
+      case "applyBuff":
+        showNotification(`apply buff skill used, ${effect.skillName}, buffName: ${effect.buffName}`)
+        break;
+      
+      case "applyDebuff":
+        showNotification(`apply debuff skill used, ${effect.skillName}, buffName: ${effect.debuffName}`)
+        break;
+
+      case "reduceCooldown":
+        showNotification(`reduce cooldown skill used, ${effect.skillName}`)
+        break;
+      
+      case "reposition":
+        showNotification(`reposition skill used, ${effect.skillName}`)
+        break;
+      }
+  }
+}
+
+
+function angel_findFinalTargets(caster, targetData, primaryTargets) {
+  return primaryTargets;
+}
+
+
+
+
+
+
+// !!! ANGEL ENGINE TERRITORY !!!
+
+
+
+
+
+
+
 
   const querySnapshot = await getDocs(collection(db, "class-cards"));
   allCharacters = [];
@@ -225,7 +396,11 @@ document.addEventListener('DOMContentLoaded', async () => {
     charInfoModal.innerHTML = `
     <div>
       <h1>${x.name}</h1>
-      <p>Skills:</p>  
+      <p>Attack: ${x.attack}</p>
+      <p>Health: ${x.health}</p>
+      <p>Speed: ${x.speed}</p>
+      <p>Role: ${x.role}</p>
+      <p>Skills:</p>
       <ol>
         ${x.skills.map(skill => `<li><strong>${skill.skillName}</strong><br><i>${skill.description}</i></li>`).join('')}
       </ol>
@@ -288,58 +463,12 @@ document.addEventListener('DOMContentLoaded', async () => {
     characterCardsDiv.appendChild(card);
   })
 
-  let playerTeam = [];
-  let enemyTeam = [];
+
   // let isPlayerMacroTurn = true;
-  let activeCharacter = null;
-  let battleQueue = [];          // THE NEW BATTLE QUEUE
-  let currentTurnIndex = 0;      // A POINTER FOR THE QUEUE
   // let isPlayerMacroTurn = true; // WE NO LONGER NEED THIS!
 
   const selectedSkillDisplay = document.querySelector('.selectedSkillDisplay');
-  let currentSkill;
-
-
-  function handleAttackClick(event) {
-    if (!currentSkill) {
-      selectedSkillDisplay.textContent = 'Select A Skill!';
-      return;
-    }
-
-    const targetSlot = event.currentTarget; // The enemy slot that was clicked
-    const attacker = activeCharacter; // The currently active player character
-
-
-    const targetCharId = targetSlot.dataset.charId;
-
-    const targetChar = enemyTeam.find(c => c.id === targetCharId);
-
-    showNotification(`${attacker.name} is attacking ${targetChar.name} with ${currentSkill}!`);
-    console.warn(`${attacker.name} is attacking ${targetCharId} with ${currentSkill}!`);
-    currentSkill = null;
-    updateSelectedSkillDisplay();
-
-
-    console.warn(`Target's health before attack: ${targetChar.currentHealth}`);;
-    targetChar.currentHealth = Math.max(0, targetChar.currentHealth - attacker.attack); // Ensure health doesn't go below 0
-    updateHealthDisplay(targetSlot, targetChar);
-    console.warn(`Target's health after attack: ${targetChar.currentHealth}`);
-    // --- THIS IS WHERE YOUR DAMAGE LOGIC WILL GO ---
-    // 1. Calculate damage based on attacker.attack, skills, etc.
-    // 2. Find the target character object in the `enemyTeam` array.
-    // 3. Subtract damage from the target's `currentHealth`.
-    // 4. Update the UI (e.g., show a health bar decreasing).
-    
-    if (targetChar.currentHealth <= 0) {
-        console.log(`${targetChar.name} has been defeated!`);
-        // TODO: Add "death" styling to the card
-        targetSlot.querySelector('.charCard').style.filter = 'grayscale(100%) brightness(50%)';
-    }
-
-    // ---------------------------------------------
-    // For now, let's just log it and end the turn.
-    endCurrentTurn(attacker);
-  }
+  
     
   
   function decideNextChar(team) {
@@ -374,10 +503,14 @@ document.addEventListener('DOMContentLoaded', async () => {
     processNextTurn();
   }
 
-
+  const turnsDiv = document.querySelector('.turnsDiv');
   const turnsDisplay = document.querySelector('.turns');
+  const prevTurnDisplay2 = document.querySelector('.prevturns2');
+  const prevTurnDisplay1 = document.querySelector('.prevturns1');
   const prevTurnDisplay = document.querySelector('.prevturns');
   const upcomingTurnsDisplay = document.querySelector('.upcomingturns');
+  const upcomingTurnsDisplay1 = document.querySelector('.upcomingturns1');
+  const upcomingTurnsDisplay2 = document.querySelector('.upcomingturns2');
   const skillCard = document.querySelector('.skillCards');
 
 
@@ -385,12 +518,12 @@ document.addEventListener('DOMContentLoaded', async () => {
     if (currentSkill === null) {
       selectedSkillDisplay.textContent = `No Skill Selected.`;
     } else {
-      selectedSkillDisplay.textContent = `Selected Skill: ${currentSkill}`;
+      selectedSkillDisplay.textContent = `Selected Skill: ${currentSkill.skillName}`;
     }
   }
 
   function skillCardClick(event) {
-    currentSkill = event.skillName;
+    currentSkill = event;
     updateSelectedSkillDisplay();
   }
 
@@ -415,7 +548,53 @@ document.addEventListener('DOMContentLoaded', async () => {
     })
   }
 
+  function updateTurnTracker(currentIndex, queue) {
+    // An array of all our turn display elements in order
+    const turnElements = [
+        document.querySelector('.prevturns2'),
+        document.querySelector('.prevturns1'),
+        document.querySelector('.prevturns'),
+        document.querySelector('.turns'),
+        document.querySelector('.upcomingturns'),
+        document.querySelector('.upcomingturns1'),
+        document.querySelector('.upcomingturns2')
+    ];
 
+    const totalCharacters = queue.length;
+    const centerIndex = 3; // The 4th slot in our display array (index 3)
+
+    // Loop through all 7 display slots
+    turnElements.forEach((element, i) => {
+        // Calculate the turn index this slot should represent
+        // 'i - centerIndex' gives us the offset from the center (-3, -2, -1, 0, 1, 2, 3)
+        const turnIndexToShow = currentIndex + (i - centerIndex);
+
+        // Check if this calculated index is a valid turn in the battle queue
+        if (turnIndexToShow >= 0 && turnIndexToShow < totalCharacters) {
+            // It's a valid turn, so display the character's name
+            const character = queue[turnIndexToShow];
+            element.textContent = character.name; // You can also use initials if names are too long
+            element.style.opacity = '1'; // Make sure it's visible
+            
+            if (i !== centerIndex) {
+              element.style.fontWeight = 'normal';
+            }
+
+            const isPlayer = playerTeam.some(playerChar => playerChar.id === character.id);
+            if (isPlayer) {
+                // If they are on the player's team, add the highlight class.
+                element.classList.add('player-turn');
+            } else {
+                // Otherwise, make sure the highlight class is removed (for enemy turns).
+                element.classList.remove('player-turn');
+            }
+        } else {
+            // This slot is before the first turn or after the last turn, so it should be empty
+            element.textContent = '--';
+            element.style.opacity = '0.5'; // Make empty slots faded
+        }
+    });
+}
 
   function processNextTurn() { 
     
@@ -426,13 +605,8 @@ document.addEventListener('DOMContentLoaded', async () => {
     
     activeCharacter = battleQueue[currentTurnIndex];
     
+    updateTurnTracker(currentTurnIndex, battleQueue);
     const isPlayerTurn = playerTeam.some(c => c.id === activeCharacter.id);
-    
-    const totalTurnsTaken = currentTurnIndex;
-    const totalCharacters = battleQueue.length;
-    prevTurnDisplay.textContent = `${totalTurnsTaken >= 0 ? totalTurnsTaken - 1 : '0'}`; // Or 'Turns' if I want total turns.
-    turnsDisplay.textContent = `${totalTurnsTaken + 1   }`; // Or 'Turns' if I want total turns.
-    upcomingTurnsDisplay.textContent = `${totalTurnsTaken + 1 >= totalCharacters ? '' : totalTurnsTaken + 2}`;
 
     const skillCardName = document.querySelector('.skillName');
     
@@ -454,7 +628,7 @@ document.addEventListener('DOMContentLoaded', async () => {
           const targetCharId = slot.dataset.charId;
           const targetChar = enemyTeam.find(c => c.id === targetCharId);
           if (targetChar && targetChar.currentHealth > 0) {
-              slot.addEventListener('click', handleAttackClick);
+              slot.addEventListener('click', angelDispatcher);
               slot.style.cursor = 'crosshair';
           }
         });
@@ -482,14 +656,14 @@ document.addEventListener('DOMContentLoaded', async () => {
 
             // 4. Handle death.
             if (targetChar.currentHealth <= 0) {
-                console.log(`${targetChar.name} has been defeated!`);
-                targetSlot.querySelector('.charCard').style.filter = 'grayscale(100%) brightness(50%)';
+              console.log(`${targetChar.name} has been defeated!`);
+              targetSlot.querySelector('.charCard').style.filter = 'grayscale(100%) brightness(50%)';
             }
           }
           
           console.log(`${activeCharacter.name} (AI) performed an action.`);
           endCurrentTurn(activeCharacter);
-        }, 3500);
+        }, 1500);
       } 
     } else {
       processNextTurn();
@@ -502,7 +676,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     charWhoActed.hasTakenTurnThisRound = true;
 
     document.querySelectorAll('.enemySide .character-slot').forEach(slot => {
-      slot.removeEventListener('click', handleAttackClick);
+      slot.removeEventListener('click', angelDispatcher);
       slot.style.cursor = 'default';
     });
 
@@ -511,6 +685,26 @@ document.addEventListener('DOMContentLoaded', async () => {
   }
 
   
+  
+  const historyButton = document.querySelector('.notifHistoryButton');
+  const historyDiv = document.querySelector('.notifHistoryModal');
+  const charInfoModal = document.getElementById('character-info-selection');
+  
+
+  historyButton.addEventListener('click', () => {
+    historyDiv.classList.toggle('hidden');
+    overlay.classList.toggle('hidden');
+  })
+
+
+  overlay.addEventListener('click', () => {
+    overlay.classList.toggle('hidden');
+    historyDiv.classList.add('hidden');
+    charInfoModal.classList.add('hidden');
+  })
+  
+
+
   const readyButton = document.querySelector('.ready-button');
   readyButton.addEventListener('click', () => {
     battleStarted = true;
@@ -552,6 +746,8 @@ document.addEventListener('DOMContentLoaded', async () => {
   
   function showNotification(message) {
     const notifBox = document.getElementById('notificationsBox');
+    notificationHistory.push(message);
+    updateNotificationHistory();
 
     const notificationItem = document.createElement('div');
     notificationItem.classList.add('notification-item');
@@ -594,6 +790,22 @@ document.addEventListener('DOMContentLoaded', async () => {
         // And it rounds up, which feels better for the player.
         healthTextElement.textContent = `${Math.ceil(characterData.currentHealth)} / ${characterData.health}`;
     }
+  }
+
+  function updateNotificationHistory() {
+    const historyContainer = document.querySelector('.notifHistory');
+    historyContainer.innerHTML = '';
+
+    if (notificationHistory.length === 0) {
+      historyContainer.innerHTML = '<p>No Notifications Yet</p>';
+      return;
+  }
+
+    notificationHistory.slice().forEach(message => {
+      const p = document.createElement('p');
+      p.textContent = message;
+      historyContainer.appendChild(p);
+    });
   }
   
 });
