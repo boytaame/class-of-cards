@@ -250,6 +250,27 @@ body {
     width: 100%;
     height: 75vh;
     align-items: center;
+    background-image: 
+        /* TOP LAYER: The Vertical Fade-Out */
+        /* This fades from fully transparent at the top to your solid body background color at the bottom. */
+        /* You can adjust the percentages to control where the fade starts and ends. */
+        linear-gradient(
+            to bottom, 
+            transparent 50%, 
+            #1757bb 100%
+        ),
+
+        /* BOTTOM LAYER: Your Original Side-by-Side Split */
+        linear-gradient(
+            var(--gradient-direction),
+            #ffc0cb00 50%, 
+            #ffffff73 50%
+        );
+    
+    /* It's often better to use the full 'background' shorthand to ensure other properties are reset */
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover; /* or your desired size */
 }
 
 /* Divider as grid column */

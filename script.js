@@ -44,6 +44,9 @@ let battleQueue = [];
 let currentTurnIndex = 0;
 
 
+const gameContainer = document.getElementById('gameBoard');
+
+
 
 
 
@@ -628,14 +631,15 @@ function angel_findFinalTargets(caster, targetData, primaryTargets) {
           const targetCharId = slot.dataset.charId;
           const targetChar = enemyTeam.find(c => c.id === targetCharId);
           if (targetChar && targetChar.currentHealth > 0) {
-              slot.addEventListener('click', angelDispatcher);
-              slot.style.cursor = 'crosshair';
+            slot.addEventListener('click', angelDispatcher);
+            slot.style.cursor = 'crosshair';
           }
+          gameContainer.style.setProperty('--gradient-direction', 'to left');
         });
       } else {
         skillCardDiv.innerHTML = '';
         console.log("AI is thinking...");
-
+        gameContainer.style.setProperty('--gradient-direction', 'to right');
         setTimeout(() => {
           // --- AI LOGIC GOES HERE ---
           // 1. AI picks a random living player to target.
