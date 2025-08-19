@@ -758,6 +758,39 @@ body {
     border-radius: 5px;
 }
 
+
+.charCard.targetable {
+    cursor: crosshair; /* The attack cursor */
+    outline: 3px solid #4CAF50; /* A green outline */
+    box-shadow: 0 0 20px #4CAF50; /* A green glow */
+}
+
+/* When a character is NOT a valid target */
+.charCard.untargetable {
+    cursor: not-allowed; /* The "no" symbol cursor */
+    filter: brightness(0.6); /* Dim the card */
+    opacity: 0.8;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /* Responsive adjustments */
 @media (max-width: 768px) {
     .gameBoard {

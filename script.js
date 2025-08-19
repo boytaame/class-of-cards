@@ -118,22 +118,39 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 
 
-function angel_CalcSkillDamage(attacker, damageEffect) {
+function angel_CalcSkillDamage(attacker, target, damageEffect) {
 
-  if (!damageEffect) {
-    return 0;
-  }
+    if (!damageEffect || damageEffect.type !== "damage") {
+        return 0;
+    }
 
-  let baseValue = 0;
-  if (damageEffect.basedOn === "attack") {
-    baseValue = attacker.attack;
-  } else if (damageEffect.basedOn === "maxHealth") {
-    baseValue = attacker.health;
-  }
+    let baseValue = 0;
+    // Determine the base value for the calculation
+    switch (damageEffect.basedOn) {
+      case "attack":
+        baseValue = attacker.attack;
+        break;
+      case "maxHealth": // Caster's max health
+        baseValue = attacker.health;
+        break;
+      case "targetMaxHealth": // Target's max health
+        // We need the target for this!
+        baseValue = target.health; 
+        break;
+      // Add more cases here in the future (e.g., speed, currentHealth, etc.)
+      default:
+        baseValue = 0;
+    }
 
-  const finalDamage = baseValue * damageEffect.multiplier;
-  
-  return Math.ceil(finalDamage);
+    let finalDamage = 0;
+    // Check for a multiplier OR a percentage
+    if (damageEffect.multiplier) {
+        finalDamage = baseValue * damageEffect.multiplier;
+    } else if (damageEffect.percentage) {
+        finalDamage = baseValue * damageEffect.percentage;
+    }
+    
+    return Math.ceil(finalDamage);
 }
 
 
@@ -208,7 +225,7 @@ async function angelEngine(caster, skillData, primaryTargets) {
     switch (effect.type) {
       case "damage" :
         for (const target of finalTargets) {
-          const rawDamage = angel_CalcSkillDamage(caster, effect);
+          const rawDamage = angel_CalcSkillDamage(caster, target, effect);
           const finalDamage = angel_CalcDamage(rawDamage, target);
 
           showNotification(`${target.name} takes ${finalDamage} damage from ${caster.name} using ${skillData.skillName}!`);
@@ -233,7 +250,7 @@ async function angelEngine(caster, skillData, primaryTargets) {
         break;
       
       case "applyDebuff":
-        showNotification(`apply debuff skill used, ${effect.skillName}, buffName: ${effect.debuffName}`)
+        showNotification(`apply debuff skill used, ${effect.skillName}, debuffName: ${effect.debuffName}`)
         break;
 
       case "reduceCooldown":
@@ -526,10 +543,72 @@ function angel_findFinalTargets(caster, targetData, primaryTargets) {
   }
 
   function skillCardClick(event) {
-    currentSkill = event;
-    updateSelectedSkillDisplay();
-  }
+  currentSkill = event;
+  updateSelectedSkillDisplay();
 
+  const targetData = currentSkill.effects[0].target;
+  const canTargetEnemies = targetData.type.includes("enemy");
+  const canTargetAllies  = targetData.type.includes("ally");
+  const canTargetSelf    = targetData.type.includes("self");
+
+  // remove old highlighting
+  document.querySelectorAll('.charCard').forEach(card => {
+    card.classList.remove('targetable', 'untargetable');
+  });
+
+  // determine whose turn it is
+  const isPlayerTurn = playerTeam.some(c => c.id === activeCharacter.id);
+
+  // pick the correct side selectors from the POV of the active character
+  const enemySideSelector = isPlayerTurn ? '.enemySide .character-slot'  : '.playerSide .character-slot';
+  const allySideSelector  = isPlayerTurn ? '.playerSide .character-slot' : '.enemySide .character-slot';
+
+  // ENEMIES
+  document.querySelectorAll(enemySideSelector).forEach(slot => {
+    const charCard = slot.querySelector('.charCard');
+    if (canTargetEnemies) {
+      const targetCharId = slot.dataset.charId;
+      const targetChar = (isPlayerTurn ? enemyTeam : playerTeam).find(c => c.id === targetCharId);
+      if (targetChar && targetChar.currentHealth > 0) {
+        charCard.classList.add('targetable');
+      }
+    } else {
+      charCard.classList.add('untargetable');
+    }
+  });
+
+  // ALLIES + SELF
+  document.querySelectorAll(allySideSelector).forEach(slot => {
+    const charCard = slot.querySelector('.charCard');
+    const isSelf = slot.dataset.charId === activeCharacter.id;
+
+    if (isSelf && canTargetSelf) {
+      charCard.classList.add('targetable');
+    } else if (!isSelf && canTargetAllies) {
+      charCard.classList.add('targetable');
+    } else {
+      // if neither rule applies, mark untargetable
+      charCard.classList.add('untargetable');
+    }
+  });
+}
+
+
+
+
+  function clearTargeting() {
+    currentSkill = null;
+    updateSelectedSkillDisplay();
+    document.querySelectorAll('.charCard').forEach(card => {
+      card.classList.remove('targetable', 'untargetable');
+      const newCard = card.cloneNode(true);
+      card.parentNode.replaceChild(newCard, card);
+    });
+
+    document.querySelectorAll('.playerSide .character-slot').forEach(slot => {  // ← fixed
+      slot.addEventListener('click', charSwap);
+    });
+  }
 
 
 
@@ -625,17 +704,7 @@ function angel_findFinalTargets(caster, targetData, primaryTargets) {
       updateSkillCards(isPlayerTurn ? activeCharacter : null); // Your component function
 
       if (isPlayerTurn) {
-        // This part is correct
-        document.querySelectorAll('.enemySide .character-slot').forEach(slot => {
-          // Only add listener if the character in the slot is alive
-          const targetCharId = slot.dataset.charId;
-          const targetChar = enemyTeam.find(c => c.id === targetCharId);
-          if (targetChar && targetChar.currentHealth > 0) {
-            slot.addEventListener('click', angelDispatcher);
-            slot.style.cursor = 'crosshair';
-          }
-          gameContainer.style.setProperty('--gradient-direction', 'to left');
-        });
+        gameContainer.style.setProperty('--gradient-direction', 'to left');
       } else {
         skillCardDiv.innerHTML = '';
         console.log("AI is thinking...");
@@ -677,12 +746,13 @@ function angel_findFinalTargets(caster, targetData, primaryTargets) {
 
   function endCurrentTurn(charWhoActed) {
 	// Mark character to keep track of their actions
+    resetTargetingUI();
     charWhoActed.hasTakenTurnThisRound = true;
 
-    document.querySelectorAll('.enemySide .character-slot').forEach(slot => {
-      slot.removeEventListener('click', angelDispatcher);
-      slot.style.cursor = 'default';
-    });
+    // document.querySelectorAll('.enemySide .character-slot').forEach(slot => {
+    //   slot.removeEventListener('click', angelDispatcher);
+    //   slot.style.cursor = 'default';
+    // });
 
     currentTurnIndex++;
     processNextTurn();
@@ -812,6 +882,39 @@ function angel_findFinalTargets(caster, targetData, primaryTargets) {
     });
   }
   
+
+  document.getElementById('gameBoard').addEventListener('click', (event) => {
+    if (!currentSkill || !playerTeam.some(c => c.id === activeCharacter.id)) {
+      return; // Do nothing if no skill is selected or not player's turn
+    }
+
+    const targetSlot = event.target.closest('.character-slot')
+
+    if (targetSlot && targetSlot.querySelector('.charCard').classList.contains('targetable')) {
+      const attacker = activeCharacter;
+      const targetCharId = targetSlot.dataset.charId;
+
+      const targetChar = playerTeam.find(c => c.id === targetCharId) || enemyTeam.find(c => c.id === targetCharId)
+
+      if (targetChar) {
+        const skillToUse = currentSkill;
+
+        resetTargetingUI();
+
+        angelEngine(attacker, skillToUse, [targetChar]).then(() => {
+          endCurrentTurn(attacker);
+        })
+      }
+    }
+  })
+
+  function resetTargetingUI() {
+    currentSkill = null;
+    updateSelectedSkillDisplay();
+    document.querySelectorAll('.charCard').forEach(card => {
+        card.classList.remove('targetable', 'untargetable');
+    });
+  }
 });
 
 
